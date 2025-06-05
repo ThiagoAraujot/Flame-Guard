@@ -25,10 +25,12 @@ public class Mission {
     private Drone drone;
 
     @Column(length = 50)
+    @Enumerated(EnumType.STRING)
     private Type type;
 
     @Column(length = 50)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     private LocalDateTime startTime;
 

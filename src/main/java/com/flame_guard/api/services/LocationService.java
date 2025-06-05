@@ -1,5 +1,6 @@
 package com.flame_guard.api.services;
 
+import com.flame_guard.api.domains.image.Image;
 import com.flame_guard.api.domains.location.Location;
 import com.flame_guard.api.domains.mission.Mission;
 import com.flame_guard.api.dtos.location.LocationRequestDTO;
@@ -66,17 +67,16 @@ public class LocationService {
     }
 
     public LocationResponseDTO update(String id, LocationRequestDTO body) {
-        Location location = locationRepository.findById(body.getId())
+        Location location = locationRepository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new EntityNotFoundException("Location not found"));
 
-        Mission mission = missionRepository.findById(UUID.fromString(id))
+        Mission mission = missionRepository.findById(body.getMissionId())
                 .orElseThrow(() -> new EntityNotFoundException("Mission not found"));
 
-        location.setLatitude(location.getLatitude());
-        location.setLongitude(location.getLongitude());
-        location.setCapturedAt(location.getCapturedAt());
         location.setMission(mission);
-
+        location.setLatitude(body.getLatitude());
+        location.setLongitude(body.getLongitude());
+        location.setCapturedAt(body.getCapturedAt());
 
         Location updatedLocation = locationRepository.save(location);
         return toResponseDTO(updatedLocation);

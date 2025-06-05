@@ -28,6 +28,7 @@ public class Image {
     private String url;
 
     @Column(length = 50)
+    @Enumerated(EnumType.STRING)
     private ImageType type;
 
     private LocalDateTime capturedAt;

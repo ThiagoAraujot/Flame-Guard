@@ -25,6 +25,7 @@ public class Alert {
     private Image image;
 
     @Column(length = 50)
+    @Enumerated(EnumType.STRING)
     private DangerLevel dangerLevel;
 
     private Boolean confirmed;

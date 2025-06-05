@@ -9,7 +9,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class LocationRequestDTO {
-    private UUID id;
     private UUID missionId;
     private Double latitude;
     private Double longitude;
